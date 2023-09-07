@@ -10,6 +10,12 @@
         ignoreWarningTypes: ["VALIDATION"]
     };
 
+    if (!window.$hab.base) window.$hab.base = {
+        warnings: {
+            list: []
+        }
+    }
+
     if (!window.$hab.issues.unpack) {
 
         window.$hab.issues.unpack = {

@@ -4,8 +4,11 @@ function(instance, properties, context) {
     try {
         //Load any data 
 
+        var map;
 
-        let map = window.$hab.issues.unpack.handler(properties.map);
+       	if (!!properties.map) map = window.$hab.issues.unpack.handler(properties.map);
+        else if (!!properties.map_string) map = JSON.parse(properties.map_string);
+        else throw Error("No map was provided for issue checking");
 
         var updatedIssues = window.$hab.issues.issuesObject._p_warnings
         .filter(warning => window.$hab.issues.ignoreWarningTypes.includes(warning._p_warning.split('_')[0]));
