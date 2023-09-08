@@ -10,7 +10,7 @@ if (!window.$hab.issues) window.$hab.issues = {
     ignoreWarningTypes: ["VALIDATION"],
     logging: false,
     log: (message, isError) => {
-        if (!this.logging) return;
+        if (!window.$hab.issues.logging) return;
         if (isError) console.error(message)
         else console.log(message)
 
@@ -48,8 +48,6 @@ if (!window.$hab.issues.unpack) {
             log(object);
 
             return object;
-
-
         },
 
         object: function (object) {
@@ -120,7 +118,6 @@ if (!window.$hab.issues.publishWarnings) {
             log(updatedIssues);
 
             updatedIssues.push(...window.$hab.base.warnings.list);
-
             window.$hab.issues.issuesObject._p_warnings = updatedIssues;
 
             this.register.forEach((fn) => {
@@ -160,7 +157,7 @@ if (Object.keys(window.$hab.issues.checkers).length < 1) {
                 var packet = JSON.parse(sender.payload._p_externalRef);
             }
             catch (err) {
-                console.error(err);
+                log(err, true);
                 return;
             }
 
@@ -266,7 +263,7 @@ if (Object.keys(window.$hab.issues.checkers).length < 1) {
                 var packet = JSON.parse(sender.payload._p_externalRef);
             }
             catch (err) {
-                console.error(err);
+                log(err, true);
                 return;
             }
 
@@ -359,7 +356,7 @@ if (Object.keys(window.$hab.issues.checkers).length < 1) {
                 packet = JSON.parse(sender.payload._p_externalRef);
             }
             catch (err) {
-                console.error(err);
+                log(err, true);
             }
 
             sender.packet = packet;
