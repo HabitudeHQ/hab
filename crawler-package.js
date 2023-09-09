@@ -25,7 +25,7 @@ if (!window.$hab.base) window.$hab.base = {
     }
 }
 
-console.log("Proof of loading");
+console.log("New proof of loading");
 
 
 if (!window.$hab.issues.unpack) {
